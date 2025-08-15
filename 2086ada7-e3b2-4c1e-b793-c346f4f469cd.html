@@ -1,0 +1,381 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnesota Legal Document Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'legal-blue': '#1E40AF',
+                    'legal-gray': '#374151',
+                    'legal-success': '#059669',
+                    'legal-warning': '#D97706',
+                    'legal-error': '#DC2626'
+                },
+                fontFamily: {
+                    'legal': ['Inter', 'system-ui', 'sans-serif']
+                }
+            }
+        }
+    };
+    </script>
+</head>
+<body class="bg-gray-50 font-legal">
+    <!-- @COMPONENT: AppHeader -->
+    <header class="bg-white border-b border-gray-200 px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <i class="fas fa-gavel text-legal-blue text-2xl"></i>
+                <h1 class="text-xl font-bold text-gray-900">Minnesota Legal Document Generator</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-question-circle text-lg"></i>
+                </button>
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-legal-blue rounded-full flex items-center justify-center">
+                        <span class="text-white text-sm font-medium">JD</span>
+                    </div>
+                    <span class="text-sm text-gray-700" data-bind="user.name">John Doe, Esq.</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: AppHeader -->
+
+    <div class="flex h-screen">
+        <!-- @COMPONENT: Sidebar -->
+        <nav class="w-64 bg-white border-r border-gray-200 px-4 py-6">
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Workflow</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-white bg-legal-blue rounded-md">
+                                <i class="fas fa-upload mr-3 text-sm"></i>
+                                Upload Documents
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md">
+                                <i class="fas fa-search mr-3 text-sm"></i>
+                                Extract Information
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md">
+                                <i class="fas fa-file-alt mr-3 text-sm"></i>
+                                Select Template
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md">
+                                <i class="fas fa-edit mr-3 text-sm"></i>
+                                Generate Document
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md">
+                                <i class="fas fa-download mr-3 text-sm"></i>
+                                Download & File
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Recent Projects</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md">
+                                <div class="font-medium">Smith vs. Johnson</div>
+                                <div class="text-xs text-gray-500">Motion to Dismiss</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md">
+                                <div class="font-medium">Estate of Brown</div>
+                                <div class="text-xs text-gray-500">Petition for Probate</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- @END_COMPONENT: Sidebar -->
+
+        <!-- @COMPONENT: MainContent -->
+        <main class="flex-1 overflow-y-auto">
+            <div class="p-8">
+                <!-- Progress Indicator -->
+                <div class="mb-8">
+                    <div class="flex items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-legal-blue rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-white text-sm"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-legal-blue">Step 1</p>
+                                <p class="text-sm text-gray-500">Upload Documents</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 h-px bg-gray-300 mx-4"></div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                                <span class="text-gray-600 text-sm">2</span>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-400">Extract Information</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 h-px bg-gray-300 mx-4"></div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                                <span class="text-gray-600 text-sm">3</span>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-400">Generate Document</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Section -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-semibold text-gray-900">Upload Source Documents</h2>
+                        <button class="text-sm text-legal-blue hover:text-blue-700 font-medium">
+                            <i class="fas fa-question-circle mr-1"></i>
+                            Upload Guidelines
+                        </button>
+                    </div>
+
+                    <!-- Drag & Drop Area -->
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-legal-blue transition-colors duration-200" data-implementation="Implement drag-drop file upload functionality">
+                        <div class="mx-auto w-12 h-12 text-gray-400 mb-4">
+                            <i class="fas fa-cloud-upload-alt text-3xl"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">Drop files here or browse</h3>
+                        <p class="text-sm text-gray-500 mb-4">Supports PDF, DOC, DOCX, and JPEG files up to 10MB each</p>
+                        <button class="bg-legal-blue text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors duration-200" data-event="click:handleFileSelect">
+                            Choose Files
+                        </button>
+                        <input type="file" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" class="hidden" data-mock="true">
+                    </div>
+
+                    <!-- Supported File Types -->
+                    <div class="mt-4 flex items-center justify-center space-x-6 text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                            <span>PDF</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-file-word text-blue-500 mr-2"></i>
+                            <span>DOC/DOCX</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-file-image text-green-500 mr-2"></i>
+                            <span>JPEG/PNG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Uploaded Files -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Uploaded Documents (3)</h3>
+                    
+                    <!-- @MAP: uploadedFiles.map(file => ( -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-file-pdf text-red-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900" data-bind="file.name">divorce_decree_final.pdf</p>
+                                    <p class="text-xs text-gray-500">2.4 MB • Uploaded 2 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-1 bg-legal-success text-white text-xs font-medium rounded">Processed</span>
+                                <button class="text-gray-400 hover:text-gray-600" data-event="click:handleFilePreview">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-gray-400 hover:text-red-600" data-event="click:handleFileDelete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-file-word text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900" data-bind="file.name">custody_agreement.docx</p>
+                                    <p class="text-xs text-gray-500">1.1 MB • Uploaded 5 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="flex items-center space-x-1">
+                                    <div class="w-4 h-4 border-2 border-legal-blue border-t-transparent rounded-full animate-spin"></div>
+                                    <span class="text-xs text-gray-500">Processing...</span>
+                                </div>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-gray-400 hover:text-red-600">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-file-image text-green-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900" data-bind="file.name">financial_statement.jpg</p>
+                                    <p class="text-xs text-gray-500">3.2 MB • Uploaded 8 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-1 bg-legal-success text-white text-xs font-medium rounded">OCR Complete</span>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-gray-400 hover:text-red-600">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- @END_MAP )) -->
+                </div>
+
+                <!-- Extracted Information Preview -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Extracted Information</h3>
+                        <button class="text-sm text-legal-blue hover:text-blue-700 font-medium" data-event="click:handleEditExtractedInfo">
+                            <i class="fas fa-edit mr-1"></i>
+                            Edit Information
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Case Information</label>
+                                <div class="bg-gray-50 rounded-md p-3">
+                                    <p class="text-sm text-gray-900"><strong>Case Number:</strong> <span data-bind="case.number">27-FA-23-12345</span></p>
+                                    <p class="text-sm text-gray-900"><strong>Court:</strong> <span data-bind="case.court">Hennepin County District Court</span></p>
+                                    <p class="text-sm text-gray-900"><strong>Judge:</strong> <span data-bind="case.judge">Hon. Mary Johnson</span></p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Petitioner</label>
+                                <div class="bg-gray-50 rounded-md p-3">
+                                    <p class="text-sm text-gray-900"><strong>Name:</strong> <span data-bind="petitioner.name">Jane Smith</span></p>
+                                    <p class="text-sm text-gray-900"><strong>Address:</strong> <span data-bind="petitioner.address">123 Main St, Minneapolis, MN 55401</span></p>
+                                    <p class="text-sm text-gray-900"><strong>Phone:</strong> <span data-bind="petitioner.phone">(612) 555-0123</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Respondent</label>
+                                <div class="bg-gray-50 rounded-md p-3">
+                                    <p class="text-sm text-gray-900"><strong>Name:</strong> <span data-bind="respondent.name">John Smith</span></p>
+                                    <p class="text-sm text-gray-900"><strong>Address:</strong> <span data-bind="respondent.address">456 Oak Ave, St. Paul, MN 55102</span></p>
+                                    <p class="text-sm text-gray-900"><strong>Phone:</strong> <span data-bind="respondent.phone">(651) 555-0456</span></p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Key Dates</label>
+                                <div class="bg-gray-50 rounded-md p-3">
+                                    <p class="text-sm text-gray-900"><strong>Marriage Date:</strong> <span data-bind="dates.marriage">June 15, 2015</span></p>
+                                    <p class="text-sm text-gray-900"><strong>Separation Date:</strong> <span data-bind="dates.separation">March 10, 2023</span></p>
+                                    <p class="text-sm text-gray-900"><strong>Filing Date:</strong> <span data-bind="dates.filing">April 5, 2023</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex justify-between mt-8">
+                    <button class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors duration-200">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Back
+                    </button>
+                    <button class="px-6 py-2 bg-legal-blue text-white rounded-md hover:bg-blue-700 transition-colors duration-200" data-event="click:handleContinueToTemplateSelection">
+                        Continue to Template Selection
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+        <!-- @END_COMPONENT: MainContent -->
+    </div>
+
+    <!-- @COMPONENT: FilePreviewModal [shows when user clicks preview] -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 hidden" id="filePreviewModal" data-mock="true">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+                <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-900">Document Preview</h3>
+                    <button class="text-gray-400 hover:text-gray-600" data-event="click:handleClosePreview">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="p-6 overflow-y-auto max-h-[70vh]">
+                    <!-- Document preview content would be rendered here -->
+                    <div class="bg-gray-100 rounded-lg p-8 text-center">
+                        <i class="fas fa-file-pdf text-4xl text-red-500 mb-4"></i>
+                        <p class="text-gray-600">Document preview would be displayed here</p>
+                        <p class="text-sm text-gray-500 mt-2">PDF viewer component integration required</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: FilePreviewModal -->
+
+    <script>
+    (function() {
+        // TODO: Implement file upload functionality
+        // TODO: Implement OCR processing for images
+        // TODO: Implement AI-powered information extraction
+        // TODO: Implement document preview functionality
+        // TODO: Implement form validation and error handling
+        
+        // Demo interaction handlers (non-functional)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Drag and drop visual feedback
+            const dropZone = document.querySelector('[data-implementation*="drag-drop"]');
+            if (dropZone) {
+                dropZone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('border-legal-blue', 'bg-blue-50');
+                });
+                
+                dropZone.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('border-legal-blue', 'bg-blue-50');
+                });
+            }
+        });
+    })();
+    </script>
+</body>
+</html>

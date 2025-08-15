@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalDoc Converter - Minnesota Legal Documents</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
+                },
+                colors: {
+                    'primary': {
+                        50: '#eff6ff',
+                        500: '#1e40af',
+                        600: '#1d4ed8',
+                        700: '#1e3a8a'
+                    },
+                    'slate': {
+                        100: '#f1f5f9',
+                        200: '#e2e8f0',
+                        300: '#cbd5e1',
+                        400: '#94a3b8',
+                        500: '#64748b',
+                        600: '#475569',
+                        700: '#334155',
+                        800: '#1e293b',
+                        900: '#0f172a'
+                    }
+                }
+            }
+        }
+    };
+    </script>
+</head>
+<body class="bg-slate-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-balance-scale text-primary-500 text-2xl mr-3"></i>
+                    <h1 class="text-xl font-bold text-slate-900">LegalDoc Converter</h1>
+                    <span class="ml-2 px-2 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-md">Minnesota</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-slate-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">Dashboard</a>
+                    <a href="#" class="text-slate-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">Templates</a>
+                    <a href="#" class="text-slate-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">History</a>
+                    <a href="#" class="text-slate-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">Settings</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <button class="text-slate-400 hover:text-slate-500">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="h-8 w-8 bg-primary-500 rounded-full flex items-center justify-center">
+                        <span class="text-white text-sm font-medium">JD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            
+            <!-- Sidebar -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h2>
+                    <div class="space-y-3">
+                        <button class="w-full text-left px-4 py-3 bg-primary-50 text-primary-700 rounded-lg hover:bg-primary-100 flex items-center">
+                            <i class="fas fa-plus mr-3"></i>
+                            New Document
+                        </button>
+                        <button class="w-full text-left px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-lg flex items-center">
+                            <i class="fas fa-folder mr-3"></i>
+                            View Templates
+                        </button>
+                        <button class="w-full text-left px-4 py-3 text-slate-700 hover:bg-slate-50 rounded-lg flex items-center">
+                            <i class="fas fa-history mr-3"></i>
+                            Recent Docs
+                        </button>
+                    </div>
+
+                    <div class="mt-8">
+                        <h3 class="text-sm font-medium text-slate-900 mb-3">Document Types</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">Motion to Dismiss</span>
+                                <span class="text-slate-400">12</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">Summary Judgment</span>
+                                <span class="text-slate-400">8</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">Discovery Motion</span>
+                                <span class="text-slate-400">15</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">Petition</span>
+                                <span class="text-slate-400">6</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="lg:col-span-3">
+                <!-- File Upload Section -->
+                <div class="bg-white rounded-lg shadow-sm border border-slate-200 mb-8">
+                    <div class="p-6 border-b border-slate-200">
+                        <h2 class="text-xl font-semibold text-slate-900">Upload Documents</h2>
+                        <p class="text-slate-600 mt-1">Upload your documents and images to convert into Minnesota legal motions/petitions</p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <!-- @COMPONENT: FileUploadArea [supports drag-and-drop, multiple file types] -->
+                        <div class="border-2 border-dashed border-slate-300 rounded-lg p-12 text-center hover:border-primary-400 transition-colors cursor-pointer" id="uploadArea">
+                            <div class="mx-auto w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-cloud-upload-alt text-slate-400 text-3xl"></i>
+                            </div>
+                            <h3 class="text-lg font-medium text-slate-900 mb-2">Drop files here or click to browse</h3>
+                            <p class="text-slate-500 mb-4">Supports PDF, DOC, DOCX, and JPEG files</p>
+                            <div class="flex flex-wrap justify-center gap-2 text-xs text-slate-400 mb-4">
+                                <span class="bg-slate-100 px-2 py-1 rounded">.PDF</span>
+                                <span class="bg-slate-100 px-2 py-1 rounded">.DOC</span>
+                                <span class="bg-slate-100 px-2 py-1 rounded">.DOCX</span>
+                                <span class="bg-slate-100 px-2 py-1 rounded">.JPG</span>
+                                <span class="bg-slate-100 px-2 py-1 rounded">.JPEG</span>
+                            </div>
+                            <button class="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors">
+                                Select Files
+                            </button>
+                            <p class="text-xs text-slate-400 mt-2">Maximum file size: 10MB per file</p>
+                        </div>
+                        <!-- @END_COMPONENT: FileUploadArea -->
+
+                        <!-- Processing Options -->
+                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="border border-slate-200 rounded-lg p-4">
+                                <h4 class="font-medium text-slate-900 mb-2">Processing Options</h4>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-slate-300 text-primary-500 focus:ring-primary-200" checked>
+                                        <span class="ml-2 text-sm text-slate-700">Enable OCR for images</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-slate-300 text-primary-500 focus:ring-primary-200" checked>
+                                        <span class="ml-2 text-sm text-slate-700">Auto-detect document type</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-slate-300 text-primary-500 focus:ring-primary-200">
+                                        <span class="ml-2 text-sm text-slate-700">Extract key legal terms</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-slate-200 rounded-lg p-4">
+                                <h4 class="font-medium text-slate-900 mb-2">Output Format</h4>
+                                <select class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary-200 focus:border-primary-500">
+                                    <option>Minnesota Motion Template</option>
+                                    <option>Minnesota Petition Template</option>
+                                    <option>Custom Format</option>
+                                </select>
+                                <p class="text-xs text-slate-500 mt-1">Court-compliant formatting will be applied</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Uploaded Files -->
+                <div class="bg-white rounded-lg shadow-sm border border-slate-200 mb-8">
+                    <div class="p-6 border-b border-slate-200">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-xl font-semibold text-slate-900">Uploaded Files</h2>
+                            <span class="text-sm text-slate-500">3 files ready for processing</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <!-- @MAP: uploadedFiles.map(file => ( -->
+                        <div class="space-y-4">
+                            <!-- File 1 -->
+                            <div class="border border-slate-200 rounded-lg p-4 hover:bg-slate-50 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fas fa-file-pdf text-red-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-slate-900">Contract_Agreement.pdf</h4>
+                                            <p class="text-sm text-slate-500">2.3 MB • Uploaded 2 minutes ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Processed</span>
+                                        <button class="text-slate-400 hover:text-slate-600">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-slate-400 hover:text-slate-600">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        <button class="text-slate-400 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <div class="text-sm text-slate-600 mb-2">Processing Progress:</div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2">
+                                        <div class="bg-green-500 h-2 rounded-full w-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- File 2 -->
+                            <div class="border border-slate-200 rounded-lg p-4 hover:bg-slate-50 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fas fa-file-word text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-slate-900">Legal_Brief_Draft.docx</h4>
+                                            <p class="text-sm text-slate-500">1.8 MB • Uploaded 5 minutes ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Processing</span>
+                                        <button class="text-slate-400 hover:text-slate-600">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-slate-400 hover:text-slate-600">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        <button class="text-slate-400 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <div class="text-sm text-slate-600 mb-2">Processing Progress:</div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2">
+                                        <div class="bg-yellow-500 h-2 rounded-full w-3/4"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- File 3 -->
+                            <div class="border border-slate-200 rounded-lg p-4 hover:bg-slate-50 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fas fa-file-image text-green-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-slate-900">Handwritten_Notes.jpg</h4>
+                                            <p class="text-sm text-slate-500">4.1 MB • Uploaded 8 minutes ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">OCR Processing</span>
+                                        <button class="text-slate-400 hover:text-slate-600">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-slate-400 hover:text-slate-600">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        <button class="text-slate-400 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <div class="text-sm text-slate-600 mb-2">OCR Progress:</div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2">
+                                        <div class="bg-blue-500 h-2 rounded-full w-1/2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- @END_MAP )) -->
+                    </div>
+                </div>
+
+                <!-- Document Generation -->
+                <div class="bg-white rounded-lg shadow-sm border border-slate-200">
+                    <div class="p-6 border-b border-slate-200">
+                        <h2 class="text-xl font-semibold text-slate-900">Generate Legal Document</h2>
+                        <p class="text-slate-600 mt-1">Configure your Minnesota legal motion or petition</p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Template Selection -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-900 mb-2">Document Template</label>
+                                <select class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-200 focus:border-primary-500">
+                                    <option>Motion to Dismiss</option>
+                                    <option>Motion for Summary Judgment</option>
+                                    <option>Motion to Compel Discovery</option>
+                                    <option>Motion for Protective Order</option>
+                                    <option>Petition for Relief</option>
+                                    <option>Amended Petition</option>
+                                </select>
+                            </div>
+
+                            <!-- Court Information -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-900 mb-2">Court Jurisdiction</label>
+                                <select class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-200 focus:border-primary-500">
+                                    <option>District Court - Hennepin County</option>
+                                    <option>District Court - Ramsey County</option>
+                                    <option>District Court - Dakota County</option>
+                                    <option>Court of Appeals</option>
+                                    <option>Supreme Court</option>
+                                </select>
+                            </div>
+
+                            <!-- Case Information -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate-900 mb-2">Case Number</label>
+                                <input type="text" placeholder="e.g., 27-CV-23-12345" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-200 focus:border-primary-500">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-slate-900 mb-2">Judge Name</label>
+                                <input type="text" placeholder="Honorable [Judge Name]" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-200 focus:border-primary-500">
+                            </div>
+
+                            <!-- Party Information -->
+                            <div class="lg:col-span-2">
+                                <label class="block text-sm font-medium text-slate-900 mb-2">Parties</label>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <input type="text" placeholder="Plaintiff Name" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-200 focus:border-primary-500">
+                                    </div>
+                                    <div>
+                                        <input type="text" placeholder="Defendant Name" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary-200 focus:border-primary-500">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Additional Options -->
+                            <div class="lg:col-span-2">
+                                <label class="block text-sm font-medium text-slate-900 mb-2">Additional Options</label>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-slate-300 text-primary-500 focus:ring-primary-200">
+                                        <span class="ml-2 text-sm text-slate-700">Include Certificate of Service</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-slate-300 text-primary-500 focus:ring-primary-200">
+                                        <span class="ml-2 text-sm text-slate-700">Add Memorandum</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-slate-300 text-primary-500 focus:ring-primary-200" checked>
+                                        <span class="ml-2 text-sm text-slate-700">Auto-cite statutes</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-slate-300 text-primary-500 focus:ring-primary-200">
+                                        <span class="ml-2 text-sm text-slate-700">Include exhibits</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                            <button class="bg-primary-500 text-white px-8 py-3 rounded-lg hover:bg-primary-600 transition-colors flex items-center justify-center flex-1">
+                                <i class="fas fa-magic mr-2"></i>
+                                Generate Document
+                            </button>
+                            <button class="border border-slate-300 text-slate-700 px-8 py-3 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center">
+                                <i class="fas fa-eye mr-2"></i>
+                                Preview Template
+                            </button>
+                            <button class="border border-slate-300 text-slate-700 px-8 py-3 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center">
+                                <i class="fas fa-save mr-2"></i>
+                                Save Draft
+                            </button>
+                        </div>
+
+                        <!-- AI Analysis Results -->
+                        <div class="mt-8 bg-slate-50 rounded-lg p-6">
+                            <h3 class="text-lg font-medium text-slate-900 mb-4">AI Content Analysis</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="bg-white rounded-lg p-4 border border-slate-200">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-search text-primary-500 mr-2"></i>
+                                        <h4 class="font-medium text-slate-900">Key Issues Identified</h4>
+                                    </div>
+                                    <ul class="text-sm text-slate-600 space-y-1">
+                                        <li>• Contract breach allegations</li>
+                                        <li>• Damages calculation dispute</li>
+                                        <li>• Statute of limitations question</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 border border-slate-200">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-balance-scale text-primary-500 mr-2"></i>
+                                        <h4 class="font-medium text-slate-900">Relevant Statutes</h4>
+                                    </div>
+                                    <ul class="text-sm text-slate-600 space-y-1">
+                                        <li>• Minn. Stat. § 541.05</li>
+                                        <li>• Minn. Stat. § 336.2-725</li>
+                                        <li>• Rule 12.02 Minn. R. Civ. P.</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-4 border border-slate-200">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-lightbulb text-primary-500 mr-2"></i>
+                                        <h4 class="font-medium text-slate-900">Recommendations</h4>
+                                    </div>
+                                    <ul class="text-sm text-slate-600 space-y-1">
+                                        <li>• Include affidavit of service</li>
+                                        <li>• Attach contract exhibits</li>
+                                        <li>• Consider alternative relief</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Processing Modal -->
+    <div id="processingModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div class="p-6">
+                <div class="flex items-center mb-4">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500 mr-3"></div>
+                    <h3 class="text-lg font-semibold text-slate-900">Processing Documents</h3>
+                </div>
+                <p class="text-slate-600 mb-4">AI is analyzing your documents and generating the legal motion. This may take a few moments.</p>
+                <div class="space-y-3">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-600">Extracting text content...</span>
+                        <span class="text-green-600">Complete</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-600">Analyzing legal content...</span>
+                        <span class="text-yellow-600">In Progress</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-600">Generating motion template...</span>
+                        <span class="text-slate-400">Pending</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-600">Formatting document...</span>
+                        <span class="text-slate-400">Pending</span>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button class="px-4 py-2 text-slate-600 hover:text-slate-800 transition-colors">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // TODO: Implement business logic, API calls, and state management
+        // File upload functionality, OCR processing, document generation, etc.
+        
+        (function() {
+            // Basic UI interactions only - no functional implementation
+            const uploadArea = document.getElementById('uploadArea');
+            const modal = document.getElementById('processingModal');
+            
+            // Drag and drop visual feedback
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('border-primary-500', 'bg-primary-50');
+            });
+            
+            uploadArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.classList.remove('border-primary-500', 'bg-primary-50');
+            });
+            
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('border-primary-500', 'bg-primary-50');
+                // TODO: Handle file upload logic
+            });
+            
+            // Generate document button
+            document.querySelector('button[class*="bg-primary-500"]').addEventListener('click', function() {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                
+                // Simulate processing
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 5000);
+            });
+        })();
+    </script>
+</body>
+</html>
