@@ -1,0 +1,8 @@
+Add database structure for storing document and case information
+
+Define PostgreSQL schemas for users, documents, and extracted information including fields for various legal case types.
+
+Replit-Commit-Author: Agent
+Replit-Commit-Session-Id: 06fb6940-0fe9-4135-b5d2-265cf1b33c0d
+Replit-Commit-Checkpoint-Type: full_checkpoint
+Replit-Commit-Screenshot-Url: https://storage.googleapis.com/screenshot-production-us-central1/16b4b46b-c4b8-42be-8146-91fa57924248/06fb6940-0fe9-4135-b5d2-265cf1b33c0d/NOqGDKN

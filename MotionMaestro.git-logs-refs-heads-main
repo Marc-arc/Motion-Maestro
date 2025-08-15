@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 b5c017529da38e5d974c38782280e4526fe2352c sassycazzer <46187102-sassycazzer@users.noreply.replit.com> 1754759121 +0000	commit (initial): Initial commit
+b5c017529da38e5d974c38782280e4526fe2352c 53a546040d601c280731d392ea29da50babe1efd sassycazzer <46187102-sassycazzer@users.noreply.replit.com> 1754762557 +0000	commit: Set up the project structure and essential UI components
+53a546040d601c280731d392ea29da50babe1efd 1d319c488d300e934c67cdf85e356ee2ce2da451 sassycazzer <46187102-sassycazzer@users.noreply.replit.com> 1754762963 +0000	commit: Add new state and federal legal document forms
+1d319c488d300e934c67cdf85e356ee2ce2da451 b72250e59ce4f1d3bb3202e4b9a9d28416252b4c sassycazzer <46187102-sassycazzer@users.noreply.replit.com> 1754763287 +0000	commit: Add new legal document templates and filtering capabilities
+b72250e59ce4f1d3bb3202e4b9a9d28416252b4c 02d60e3e8d67ed72572bc71f4415a1873a1f8e52 sassycazzer <46187102-sassycazzer@users.noreply.replit.com> 1754806510 +0000	commit: Add database structure for storing document and case information
